@@ -76,18 +76,22 @@ public class JavaFX_PoC extends Application {
         Button btFinance = new Button();
         Button btHappiness = new Button();
         
-        //icons for iconMenu
+        //Icons for iconMenu
         Image imageMenu = new Image(getClass().getResourceAsStream("Computer-icon.png"));
         Image imageQuestLog = new Image(getClass().getResourceAsStream("QuestLog.png"));
         Image imageFinance = new Image(getClass().getResourceAsStream("money_bag.png"));
         Image imageHappiness = new Image(getClass().getResourceAsStream("Happiness.png"));
         
+        //Set icons on the buttons
         btMenu.setGraphic(new ImageView(imageMenu));
         btQuestLog.setGraphic(new ImageView(imageQuestLog));
         btFinance.setGraphic(new ImageView(imageFinance));
         btHappiness.setGraphic(new ImageView(imageHappiness));
         
-
+        //Button functionality
+        btMenu.setOnAction(e -> GameMenu.display());
+        
+        //Align the buttons
         GridPane.setConstraints(btMenu, 0, 1);
         GridPane.setConstraints(btQuestLog, 1, 1);
         GridPane.setConstraints(btFinance, 2, 1);
