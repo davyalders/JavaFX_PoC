@@ -14,6 +14,7 @@ import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Separator;
@@ -32,6 +33,7 @@ public class JavaFX_PoC extends Application {
 
     Stage window;
     Scene scene1, scene2;
+    ComboBox<String> comboBox;
 
     @Override
     public void start(Stage primaryStage) {
@@ -54,9 +56,53 @@ public class JavaFX_PoC extends Application {
         grid3.setVgap(2);
         grid3.setHgap(5);
         
+        GridPane grid4 = new GridPane();
+        grid4.setPadding(new Insets(10, 10, 10, 10));
+        grid4.setVgap(15);
+        grid4.setHgap(20);
+        
         BorderPane border = new BorderPane();
         
-  
+        //ComboBox BuildNavigation
+        comboBox= new ComboBox();
+        comboBox.getItems().addAll(
+                "Paths",
+                "Stands",
+                "Flatrides",
+                "Coaster"
+        );
+        
+        comboBox.setPromptText("Start building!");
+        GridPane.setConstraints(comboBox, 0, 0);
+        comboBox.setMaxWidth(Double.MAX_VALUE);
+                
+        
+        //Building Paths
+        Button btPath1 = new Button();
+        btPath1.setMinHeight(50);
+        btPath1.setMinWidth(50);
+        GridPane.setConstraints(btPath1, 0, 1);
+        
+        Button btPath2 = new Button();
+        btPath2.setMinHeight(50);
+        btPath2.setMinWidth(50);
+        GridPane.setConstraints(btPath2, 0, 2);
+        
+        Button btPath3 = new Button();
+        btPath3.setMinHeight(50);
+        btPath3.setMinWidth(50);
+        GridPane.setConstraints(btPath3, 0, 3);
+        
+        Button btPath4 = new Button();
+        btPath4.setMinHeight(50);
+        btPath4.setMinWidth(50);
+        GridPane.setConstraints(btPath4, 0, 4);
+        
+        Button btPath5 = new Button();
+        btPath5.setMinHeight(50);
+        btPath5.setMinWidth(50);
+        GridPane.setConstraints(btPath5, 0, 5);
+        
         //Infobar Icons
         Image imagePopulation = new Image(getClass().getResourceAsStream("population.png"));
         Image imageCurrency = new Image(getClass().getResourceAsStream("money_bag.png"));
@@ -151,9 +197,12 @@ public class JavaFX_PoC extends Application {
         grid3.setAlignment(Pos.TOP_CENTER);
         grid3.setStyle("-fx-background-color: #000000;");
         
+        grid4.getChildren().addAll(btPath1, btPath2, btPath3, btPath4, btPath5, comboBox);
+        grid4.setAlignment(Pos.TOP_LEFT);
 
+        
         //LoginScreen
-        scene1 = new Scene(grid, 1380, 720);
+        scene1 = new Scene(grid, 1360, 710);
         scene1.getStylesheets().add(JavaFX_PoC.class.getResource("Login.css").toExternalForm());
         window.setScene(scene1);
         window.show();
@@ -161,7 +210,9 @@ public class JavaFX_PoC extends Application {
         //MainScreen
         border.setTop(grid3);
         border.setBottom(grid2);
-        scene2 = new Scene(border, 1380, 720);
+        border.setLeft(grid4);
+        
+        scene2 = new Scene(border, 1360, 710);
         scene2.getStylesheets().add(JavaFX_PoC.class.getResource("Main.css").toExternalForm());
  
         //Close application
@@ -169,6 +220,8 @@ public class JavaFX_PoC extends Application {
             e.consume();
             closeProgram();
         });
+        
+        window.setResizable(false);
 
     }
 
