@@ -5,7 +5,6 @@
  */
 package javafx_poc;
 
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

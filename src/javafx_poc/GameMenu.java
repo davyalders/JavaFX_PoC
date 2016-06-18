@@ -27,6 +27,7 @@ public class GameMenu {
         window.setTitle("Menu");
         window.setMinWidth(220);
         window.setMinHeight(300);
+        window.setResizable(false);
         
         Button btSettings = new Button("Settings");
         btSettings.setMaxWidth(Double.MAX_VALUE);

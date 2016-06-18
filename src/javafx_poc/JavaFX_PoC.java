@@ -6,22 +6,20 @@
 package javafx_poc;
 
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -38,6 +36,7 @@ public class JavaFX_PoC extends Application {
         window = primaryStage;
         window.setTitle("JavaFxPoC");
 
+        //Grids
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
         grid.setVgap(8);
@@ -47,6 +46,43 @@ public class JavaFX_PoC extends Application {
         grid2.setPadding(new Insets(10, 10, 10, 10));
         grid2.setVgap(8);
         grid2.setHgap(2);
+        
+        GridPane grid3 = new GridPane();
+        grid3.setPadding(new Insets(10, 10, 10, 10));
+        grid3.setVgap(2);
+        grid3.setHgap(5);
+  
+        //Infobar Icons
+        Image imagePopulation = new Image(getClass().getResourceAsStream("population.png"));
+
+        //Infobar Labels
+        Label lbPopulation = new Label("4302");
+        lbPopulation.setGraphic(new ImageView(imagePopulation));
+        GridPane.setConstraints(lbPopulation, 0, 2);
+        GridPane.setColumnSpan(lbPopulation, 2);
+        
+        Label lbDate = new Label("21 Jan 2016");
+        GridPane.setConstraints(lbDate, 3, 2);
+        GridPane.setColumnSpan(lbDate, 2);
+        
+        Label lbCurrency = new Label();
+        GridPane.setConstraints(lbCurrency, 6, 2);
+        GridPane.setColumnSpan(lbCurrency, 2);
+        
+        //Infobar
+        final Separator sepVert1 = new Separator();
+        sepVert1.setOrientation(Orientation.VERTICAL);
+        sepVert1.setValignment(VPos.CENTER);
+        sepVert1.setPrefHeight(80);
+        GridPane.setConstraints(sepVert1, 2, 2);
+        GridPane.setRowSpan(sepVert1, 2);
+        
+        final Separator sepVert2 = new Separator();
+        sepVert2.setOrientation(Orientation.VERTICAL);
+        sepVert2.setValignment(VPos.CENTER);
+        sepVert2.setPrefHeight(80);
+        GridPane.setConstraints(sepVert2, 5, 2);
+        GridPane.setRowSpan(sepVert2, 2);
 
         //Naam input
         TextField txtNaam = new TextField();
@@ -54,7 +90,7 @@ public class JavaFX_PoC extends Application {
         txtNaam.setPromptText("Username");
 
         //Password input
-        TextField txtPassword = new TextField();
+        PasswordField txtPassword = new PasswordField();
         GridPane.setConstraints(txtPassword, 1, 1);
         txtPassword.setPromptText("Password");
 
@@ -103,6 +139,9 @@ public class JavaFX_PoC extends Application {
 
         grid2.getChildren().addAll(btMenu, btQuestLog, btFinance, btHappiness);
         grid2.setAlignment(Pos.BOTTOM_RIGHT);
+        
+        grid3.getChildren().addAll(lbPopulation, sepVert1, lbDate, sepVert2, lbCurrency);
+        grid3.setAlignment(Pos.TOP_CENTER);
 
         //LoginScreen
         scene1 = new Scene(grid, 1380, 720);
@@ -111,8 +150,14 @@ public class JavaFX_PoC extends Application {
         window.show();
 
         //MainScreen
-        scene2 = new Scene(grid2, 1380, 720);
+        Group root = new Group();
+        root.getChildren().addAll(grid2,grid3);
+        
+        
+        scene2 = new Scene(root, 1380, 720);
         scene2.getStylesheets().add(JavaFX_PoC.class.getResource("Main.css").toExternalForm());
+        
+        
 
         //Close application
         window.setOnCloseRequest(e -> {

@@ -24,5 +24,11 @@ and open the template in the editor.
 
 .label {
     -fx-text-fill: #FFFFFF;
+    -fx-background-color: #000000;
+}
+
+.separator{
+    -fx-background-color: #DC9656;
+    -fx-background-radius: 2;
 }
 
