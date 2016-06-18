@@ -9,7 +9,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,34 +30,28 @@ public class GameMenu {
         
         Button btSettings = new Button("Settings");
         btSettings.setMaxWidth(Double.MAX_VALUE);
-        btSettings.setOnAction(e -> window.close());
         GridPane.setConstraints(btSettings, 1, 0);
         
         Button btKeybinds = new Button("Keybinds");
         btKeybinds.setMaxWidth(Double.MAX_VALUE);
-        btKeybinds.setOnAction(e -> window.close());
         GridPane.setConstraints(btKeybinds, 1, 1);
         
-        Button btSave = new Button("Save");
+        Button btSave = new Button("Save...");
         btSave.setMaxWidth(Double.MAX_VALUE);
-        btSave.setOnAction(e -> window.close());
         GridPane.setConstraints(btSave, 1, 2);
         
-        Button btLoad = new Button("Load");
+        Button btLoad = new Button("Load...");
         btLoad.setMaxWidth(Double.MAX_VALUE);
-        btLoad.setOnAction(e -> window.close());
         GridPane.setConstraints(btLoad, 1, 3);
         
         Button btSaveExit = new Button("Save and exit");
         btSaveExit.setMaxWidth(Double.MAX_VALUE);
-        btSaveExit.setOnAction(e -> window.close());
         GridPane.setConstraints(btSaveExit, 1, 4);
         
         Button btResume = new Button("Resume game");
         btResume.setMaxWidth(Double.MAX_VALUE);
         btResume.setOnAction(e -> window.close());
-        GridPane.setConstraints(btResume, 1, 5);
-        
+        GridPane.setConstraints(btResume, 1, 5);      
         
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));

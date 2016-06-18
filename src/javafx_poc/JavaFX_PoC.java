@@ -128,7 +128,6 @@ public class JavaFX_PoC extends Application {
             window.close();
         }
     }
-
     /**
      * @param args the command line arguments
      */
