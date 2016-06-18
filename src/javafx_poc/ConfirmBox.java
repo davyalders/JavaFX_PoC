@@ -5,7 +5,6 @@
  */
 package javafx_poc;
 
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,9 +18,12 @@ import javafx.stage.Stage;
  *
  * @author Davy
  */
-public class AlertBox {
+public class ConfirmBox {
     
-    public static void display(String title, String message){
+    static boolean awnser;
+    
+
+     public static boolean display(String title, String message){
         Stage window = new Stage();
         
         window.initModality(Modality.APPLICATION_MODAL);
@@ -33,10 +35,21 @@ public class AlertBox {
         GridPane.setConstraints(lbMessage, 1, 0);
        
         
-        Button btReturn = new Button("Close");
-        btReturn.setMaxWidth(Double.MAX_VALUE);
-        btReturn.setOnAction(e -> window.close());
-        GridPane.setConstraints(btReturn, 1, 1);
+        Button btYes = new Button("Yes");
+        btYes.setMaxWidth(Double.MAX_VALUE);
+        btYes.setOnAction(e -> {
+            awnser = true;
+            window.close();
+        });
+        GridPane.setConstraints(btYes, 1, 1);
+        
+        Button btNo = new Button("No");
+        btNo.setMaxWidth(Double.MAX_VALUE);
+        btNo.setOnAction(e -> {
+            awnser = false;
+            window.close();
+        });
+        GridPane.setConstraints(btNo, 1, 2);
         
         
         GridPane grid = new GridPane();
@@ -44,7 +57,7 @@ public class AlertBox {
         grid.setVgap(8);
         grid.setHgap(10);
         
-        grid.getChildren().addAll(lbMessage, btReturn);
+        grid.getChildren().addAll(lbMessage, btYes, btNo);
         grid.setAlignment(Pos.CENTER);
         
         Scene scene = new Scene(grid, 100, 150);
@@ -52,6 +65,7 @@ public class AlertBox {
         window.setScene(scene);
         window.showAndWait();
         
-    }
-    
+        return awnser;
+
+     }
 }

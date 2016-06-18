@@ -59,7 +59,7 @@ public class JavaFX_PoC extends Application {
         //Button exit
         Button btExit = new Button("Exit to desktop");
         btExit.setMaxWidth(Double.MAX_VALUE);
-        btExit.setOnAction(e -> AlertBox.display("Exit to desktop", "Are you sure you want to exit?"));
+        btExit.setOnAction(e -> closeProgram());
         GridPane.setConstraints(btExit, 1, 3);
         
         grid.getChildren().addAll(txtNaam,txtPassword, btLogin, btExit);
@@ -75,7 +75,18 @@ public class JavaFX_PoC extends Application {
         StackPane mainScreen = new StackPane();
         scene2 = new Scene(mainScreen, 1380,720);
         
+        window.setOnCloseRequest(e -> {
+            e.consume();
+            closeProgram();
+        });
         
+        
+    }
+    
+    private void closeProgram(){
+        Boolean close = ConfirmBox.display("Exit to desktop", "Are you sure you want to exit?");
+        if (close)
+            window.close();
     }
 
     /**
