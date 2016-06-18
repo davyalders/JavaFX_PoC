@@ -29,6 +29,10 @@ and open the template in the editor.
 
 .separator{
     -fx-background-color: #DC9656;
-    -fx-background-radius: 2;
+    -fx-background-radius: 1;
+}
+
+.gridpane{
+    -fx-background-color: #000000;
 }
 

@@ -6,6 +6,7 @@
 package javafx_poc;
 
 import javafx.application.Application;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -19,6 +20,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -51,9 +53,13 @@ public class JavaFX_PoC extends Application {
         grid3.setPadding(new Insets(10, 10, 10, 10));
         grid3.setVgap(2);
         grid3.setHgap(5);
+        
+        BorderPane border = new BorderPane();
+        
   
         //Infobar Icons
         Image imagePopulation = new Image(getClass().getResourceAsStream("population.png"));
+        Image imageCurrency = new Image(getClass().getResourceAsStream("money_bag.png"));
 
         //Infobar Labels
         Label lbPopulation = new Label("4302");
@@ -65,7 +71,8 @@ public class JavaFX_PoC extends Application {
         GridPane.setConstraints(lbDate, 3, 2);
         GridPane.setColumnSpan(lbDate, 2);
         
-        Label lbCurrency = new Label();
+        Label lbCurrency = new Label("42.324");
+        lbCurrency.setGraphic(new ImageView(imageCurrency));
         GridPane.setConstraints(lbCurrency, 6, 2);
         GridPane.setColumnSpan(lbCurrency, 2);
         
@@ -73,14 +80,14 @@ public class JavaFX_PoC extends Application {
         final Separator sepVert1 = new Separator();
         sepVert1.setOrientation(Orientation.VERTICAL);
         sepVert1.setValignment(VPos.CENTER);
-        sepVert1.setPrefHeight(80);
+        sepVert1.setPrefHeight(10);
         GridPane.setConstraints(sepVert1, 2, 2);
         GridPane.setRowSpan(sepVert1, 2);
         
         final Separator sepVert2 = new Separator();
         sepVert2.setOrientation(Orientation.VERTICAL);
         sepVert2.setValignment(VPos.CENTER);
-        sepVert2.setPrefHeight(80);
+        sepVert2.setPrefHeight(10);
         GridPane.setConstraints(sepVert2, 5, 2);
         GridPane.setRowSpan(sepVert2, 2);
 
@@ -94,7 +101,7 @@ public class JavaFX_PoC extends Application {
         GridPane.setConstraints(txtPassword, 1, 1);
         txtPassword.setPromptText("Password");
 
-        // Button login
+        //Button login
         Button btLogin = new Button("Log in");
         btLogin.setOnAction(e -> window.setScene(scene2));
         btLogin.setMaxWidth(Double.MAX_VALUE);
@@ -142,6 +149,8 @@ public class JavaFX_PoC extends Application {
         
         grid3.getChildren().addAll(lbPopulation, sepVert1, lbDate, sepVert2, lbCurrency);
         grid3.setAlignment(Pos.TOP_CENTER);
+        grid3.setStyle("-fx-background-color: #000000;");
+        
 
         //LoginScreen
         scene1 = new Scene(grid, 1380, 720);
@@ -150,15 +159,11 @@ public class JavaFX_PoC extends Application {
         window.show();
 
         //MainScreen
-        Group root = new Group();
-        root.getChildren().addAll(grid2,grid3);
-        
-        
-        scene2 = new Scene(root, 1380, 720);
+        border.setTop(grid3);
+        border.setBottom(grid2);
+        scene2 = new Scene(border, 1380, 720);
         scene2.getStylesheets().add(JavaFX_PoC.class.getResource("Main.css").toExternalForm());
-        
-        
-
+ 
         //Close application
         window.setOnCloseRequest(e -> {
             e.consume();
