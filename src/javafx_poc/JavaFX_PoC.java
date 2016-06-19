@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -158,6 +159,10 @@ public class JavaFX_PoC extends Application {
         btExit.setMaxWidth(Double.MAX_VALUE);
         btExit.setOnAction(e -> closeProgram());
         GridPane.setConstraints(btExit, 1, 3);
+        
+        //Tooltips
+        final Tooltip tooltipMenu = new Tooltip();
+        tooltipMenu.setText("Open the menu");
 
         //Main layout              
         Button btMenu = new Button();
@@ -176,6 +181,9 @@ public class JavaFX_PoC extends Application {
         btQuestLog.setGraphic(new ImageView(imageQuestLog));
         btFinance.setGraphic(new ImageView(imageFinance));
         btHappiness.setGraphic(new ImageView(imageHappiness));
+        
+        //Set tooltip
+        btMenu.setTooltip(tooltipMenu);
         
         //Button functionality
         btMenu.setOnAction(e -> GameMenu.display());
